@@ -263,6 +263,14 @@ class KeyCombination {
             stateFromEvent(event)
           );
         }
+
+        if (event[attributeName] === true && !modifierStillPressed) {
+          this.setKeyState(
+            modifierKey,
+            KeyEventType.keydown,
+            stateFromEvent(event)
+          );
+        }
       });
     })
   }
