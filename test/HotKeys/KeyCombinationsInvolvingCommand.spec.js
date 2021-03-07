@@ -66,4 +66,35 @@ describe('When a HotKeys key combination involves the command key:', () => {
       });
     })
   });
+
+  context(`and the keydown for the command key is missed`, () => {
+      beforeEach(function () {
+        this.keyMap = {
+          'ACTION1': { sequence: 'cmd+k', action: 'keydown' },
+        };
+
+        this.handler = sinon.spy();
+
+        this.handlers = {
+          'ACTION1': this.handler
+        };
+
+        this.reactDiv = document.createElement('div');
+        document.body.appendChild(this.reactDiv);
+
+        this.wrapper = mount(
+          <HotKeys keyMap={this.keyMap} handlers={this.handlers}>
+            <div className="childElement" />
+          </HotKeys>
+        );
+
+        this.targetElement = new FocusableElement(this.wrapper, '.childElement');
+        this.targetElement.focus();
+      });
+
+    it('still triggers the combination', function () {
+      this.targetElement.keyDown('k', {metaKey: true});
+      expect(this.handler).to.have.been.calledOnce;
+    });
+  });
 });

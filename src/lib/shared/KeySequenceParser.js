@@ -138,7 +138,7 @@ class KeySequenceParser {
  */
 function parseCombination(string, options = {}) {
   const shiftPressed = string.indexOf(/[sS]hift/) !== -1;
-  const altPressed = string.indexOf(/[sS]hift/) !== -1;
+  const altPressed = string.indexOf(/[aA]lt/) !== -1;
 
   return string.replace(/^\+|(\s|[^+]\+)\+/, '$1plus').split('+').reduce((keyDictionary, keyName) => {
     let finalKeyName = standardizeKeyName(keyName, {
