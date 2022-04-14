@@ -66,7 +66,17 @@ class Logger {
         return;
       }
 
-      this[level] = ['debug', 'verbose'].indexOf(level) === -1 ? console[level] : console.log;
+      const logToConsole = ['debug', 'verbose'].indexOf(level) === -1 ? console[level] : console.log;
+
+      this[level] = (...args) => {
+        const materializedArgs = args.map(arg =>
+          // Function arguments are evaluated lazily to reduce performance overhead
+          typeof arg === 'function'
+            ? arg()
+            : arg
+        );
+        logToConsole(...materializedArgs);
+      }
     }
   }
 }

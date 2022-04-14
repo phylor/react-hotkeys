@@ -149,7 +149,7 @@ class AbstractKeyEventStrategy {
     this.logger.verbose(
       this.logger.nonKeyEventPrefix(this.componentId, { focusTreeId: false }),
       'Registered component in application key map:\n',
-      `${printComponent(this.componentTree.get(this.componentId))}`
+      () => `${printComponent(this.componentTree.get(this.componentId))}`
     );
 
     return this.componentId;
@@ -176,7 +176,7 @@ class AbstractKeyEventStrategy {
     this.logger.verbose(
       this.logger.nonKeyEventPrefix(componentId),
       'Registered component mount:\n',
-      `${printComponent(this.componentTree.get(componentId))}`
+      () => `${printComponent(this.componentTree.get(componentId))}`
     );
   }
 
@@ -191,7 +191,7 @@ class AbstractKeyEventStrategy {
     this.logger.verbose(
       this.logger.nonKeyEventPrefix(componentId),
       'De-registered component. Remaining component Registry:\n',
-      `${printComponent(this.componentTree.toJSON())}`
+      () => `${printComponent(this.componentTree.toJSON())}`
     );
 
     if (this.componentTree.isRootId(componentId)) {

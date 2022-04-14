@@ -132,7 +132,7 @@ class ActionResolver {
       this.logger.verbose(
         this.logger.keyEventPrefix(componentId),
         'Internal key mapping:\n',
-        `${printComponent(keyHistoryMatcher.toJSON())}`
+        () => `${printComponent(keyHistoryMatcher.toJSON())}`
       );
 
       const keyHistory = this._eventStrategy.keyHistory;

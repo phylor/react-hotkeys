@@ -16,14 +16,14 @@ class EventStrategyLogger extends Logger {
     this.verbose(
       this.nonKeyEventPrefix(componentId),
       'New component options:\n',
-      printComponent(componentOptions)
+      () => printComponent(componentOptions)
     );
   }
 
   logKeyHistory(keyHistory, componentId) {
     this.verbose(
       this.keyEventPrefix(componentId),
-      `Key history: ${printComponent(keyHistory.toJSON())}.`
+      () => `Key history: ${printComponent(keyHistory.toJSON())}.`
     );
   }
 }
