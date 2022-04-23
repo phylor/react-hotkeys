@@ -97,7 +97,7 @@ export interface ComponentProps extends ComponentPropsBase {
   ref?: React.MutableRefObject<React.ComponentClass>
 }
 
-export type ReactComponent = React.ComponentClass | string | React.SFC<ComponentProps>;
+export type ReactComponent = React.ComponentClass | string | React.FC<ComponentProps>;
 
 export interface HotKeysProps extends HotKeysEnabledProps {
   /**
